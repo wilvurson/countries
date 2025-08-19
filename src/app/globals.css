@@ -1,0 +1,44 @@
+body {
+  background-color: rgb(52, 52, 52);
+  color: white
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.search_bar {
+  width: 150px;
+}
+
+.country_holder {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding-inline: 10px;
+  background-color: rgb(214, 214, 214);
+  transition: 0.3s;
+  cursor: pointer;
+  color: black
+}
+
+.country_holder:hover {
+  border: 1px solid rgb(97, 97, 97);
+  border-radius: 5px;
+  padding-inline: 10px;
+  background-color: rgb(255, 255, 255);
+}
+
+.country_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
