@@ -11,7 +11,7 @@ export default function Home() {
       .then((res) => res.json())
       .then((response) => {
         setData(response);
-        setFilteredData(response); // initialize filteredData
+        setFilteredData(response);
       })
       .catch((error) => console.log("error", error));
   };
@@ -23,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     const input = document.querySelector(".search_bar");
 
-    const handleKeyDown = () => {
+    const handleInput = () => {
       const value = input.value.toLowerCase();
       const filtered = data.filter((country) =>
         country.name.common.toLowerCase().includes(value)
@@ -31,10 +31,10 @@ export default function Home() {
       setFilteredData(filtered);
     };
 
-    input.addEventListener("keydown", handleKeyDown);
+    input.addEventListener("input", handleInput);
 
     return () => {
-      input.removeEventListener("keydown", handleKeyDown);
+      input.removeEventListener("input", handleInput);
     };
   }, [data]);
 
