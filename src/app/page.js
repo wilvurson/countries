@@ -7,10 +7,11 @@ export default function Home() {
   const [filtered, setFiltered] = useState([]);
   const [search, setSearch] = useState("");
 
-  // Fetch countries
   const get_data = async () => {
     try {
-      const res = await fetch("https://restcountries.com/v3.1/independent?status=true");
+      const res = await fetch(
+        "https://restcountries.com/v3.1/independent?status=true"
+      );
       const response = await res.json();
       setData(response);
       setFiltered(response);
@@ -27,16 +28,15 @@ export default function Home() {
     return <div>.loading.</div>;
   }
 
-  // Handle Enter key
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      const query = search.trim().toLowerCase();
-      if (query === "") {
-        setFiltered(data); // show all
+  const searched = (keys) => {
+    if (keys.key === "Enter") {
+      const asked = search.trim().toLowerCase();
+      if (asked === "") {
+        setFiltered(data);
       } else {
         setFiltered(
           data.filter((country) =>
-            country.name.common.toLowerCase().includes(query)
+            country.name.common.toLowerCase().includes(asked)
           )
         );
       }
@@ -54,8 +54,8 @@ export default function Home() {
             className="search_bar"
             placeholder="Search"
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleKeyDown}
+            onChange={(changed) => setSearch(changed.target.value)}
+            onKeyDown={searched}
           />
         </div>
       </div>
@@ -63,7 +63,11 @@ export default function Home() {
         {filtered.map((country) => (
           <div key={country.name.common} className="country_holder">
             <h2 className="country_name">{country.name.common}</h2>
-            <img className="flags" src={country.flags.png} alt={country.name.common} />
+            <img
+              className="flags"
+              src={country.flags.png}
+              alt={country.name.common}
+            />
           </div>
         ))}
       </div>
