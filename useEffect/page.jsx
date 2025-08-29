@@ -8,7 +8,7 @@ import Pagination from "./main-holder/pagination";
 export default function App() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const limit = 12; // must match Products.jsx
+  const limit = 12; // same as Products.jsx
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -23,7 +23,6 @@ export default function App() {
           <Products page={page} onTotalChange={setTotal} />
         </div>
 
-        {/* Pagination */}
         <Pagination
           currentPage={page}
           total={total}
