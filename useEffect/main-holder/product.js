@@ -2,20 +2,20 @@
 
 import { useEffect, useState } from "react";
 
-export default function Products({ page }) {
+export default function Products({ page, onTotalChange }) {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    // API supports limit & skip params
-    const limit = 12; // how many products per page
+    const limit = 12; // how many per page
     const skip = (page - 1) * limit;
 
     fetch(`https://dummyjson.com/products?limit=${limit}&skip=${skip}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
+        onTotalChange(data.total); // send total products to parent
       });
-  }, [page]); // refetch when page changes
+  }, [page]);
 
   return (
     <>
